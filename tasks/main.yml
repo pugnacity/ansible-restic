@@ -44,7 +44,7 @@
   ansible.builtin.known_hosts:
     path: /etc/ssh/ssh_known_hosts
     name: "{{ restic_ssh_hostname }}"
-    key: "{{ lookup('pipe', 'ssh-keyscan ' + restic_ssh_hostname | quote ) }}"
+    key: "{{ lookup('pipe', 'ssh-keyscan -H' + restic_ssh_hostname | quote ' -p ' restic_ssh_port | quote ) }}"
   when: restic_ssh_enabled
 
 - name: Add systemd service for restic
