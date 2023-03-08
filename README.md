@@ -1,6 +1,6 @@
 # Ansible role for Restic
 
-This role will setup [Restic](https://restic.net/) backups on a Debian/Ubuntu machine using a systemd service and timer.
+This role will setup [Restic](https://restic.net/) backups using a systemd service and timer.
 
 It supports S3 backend or SFTP backend and will thus setup the SSH config and SSH private keys (see variables below).
 

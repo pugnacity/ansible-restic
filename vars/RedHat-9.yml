@@ -1,0 +1,5 @@
+---
+restic_packages:
+  - fuse
+  - bzip2
+  - pigz
