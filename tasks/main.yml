@@ -40,6 +40,13 @@
     group: root
     mode: "0600"
 
+- name: add ssh host
+  ansible.builtin.known_hosts:
+    path: /etc/ssh/ssh_known_hosts
+    name: "{{ restic_ssh_hostname }}"
+    key: "{{ lookup('pipe', 'ssh-keyscan' + restic_ssh_hostname | quote ) }}"
+  when: restic_ssh_hostname_key is defined and restic_ssh_enabled
+
 - name: Add systemd service for restic
   ansible.builtin.template:
     src: restic-backup.service.j2
