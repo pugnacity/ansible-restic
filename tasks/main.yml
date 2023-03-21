@@ -39,6 +39,7 @@
     owner: root
     group: root
     mode: "0600"
+  notify: restic init
 
 - name: add ssh host
   ansible.builtin.known_hosts:

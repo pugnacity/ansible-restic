@@ -2,3 +2,15 @@
 - name: systemd reload
   ansible.builtin.systemd:
     daemon_reload: yes
+
+- name: restic init
+  ansible.builtin.shell: source .restic_env && restic init
+  args:
+    chdir: /root/
+  register: restic_init
+  changed_when: "'created restic repository' in restic_init.stdout"
+  failed_when:
+    - restic_init.rc != 0
+    - not 'config file already exists' in restic_init.stderr
+    - not 'config already initialized' in restic_init.stderr
+    - not 'config already exists' in restic_init.stderr
