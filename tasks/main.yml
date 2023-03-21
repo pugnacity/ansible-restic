@@ -47,6 +47,7 @@
     name: "{{ restic_ssh_hostname }}"
     key: "{{ lookup('pipe', 'ssh-keyscan -p ' + restic_ssh_port | string + ' -H ' + restic_ssh_hostname ) }}"
   when: restic_ssh_enabled
+  changed_when: false
 
 - name: Add systemd service for restic
   ansible.builtin.template:
